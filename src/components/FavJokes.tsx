@@ -17,6 +17,9 @@ interface IFavJokesProps {
 
 function FavJokes(props: IFavJokesProps) {
     const [allJokes, setAllJokes] = useState([] as any);
+    const [, setshouldJokesRender] = useState(false);
+
+
 
     useEffect(() => {
         renderJokes();
@@ -31,10 +34,11 @@ function FavJokes(props: IFavJokesProps) {
             let joke = await getJokeById(id);
             await allJokes.push(joke)
         }
+        setshouldJokesRender(true)
     }
 
-    const renderJokeList = allJokes.map((joke: any) => {
-        return <JokeWindow saveThisJoke={saveJook} joke={joke}></JokeWindow>
+    const renderJokeList = allJokes.map((joke1: any) => {
+        return <JokeWindow saveThisJoke={saveJook} joke={joke1}></JokeWindow>
     })
 
     return (
